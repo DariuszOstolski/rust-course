@@ -1,9 +1,29 @@
-pub trait KvStore {
-    fn set(&mut self, key: String, value: String) {}
+use std::collections::HashMap;
 
-    fn get(&mut self, key: String) -> Option<String> {
-        None
+pub struct KvStore {
+    store: std::collections::HashMap<String, String>,
+}
+
+impl KvStore {
+    pub fn new() -> KvStore {
+        KvStore {
+            store: HashMap::new(),
+        }
     }
 
-    fn remove(&mut self, key: String) {}
+    pub fn set(&mut self, key: String, value: String) {
+        self.store.insert(key, value);
+    }
+
+    pub fn get(&mut self, key: String) -> Option<String> {
+        let result = self.store.get(&key);
+        match result {
+            Some(result) => Some(result.clone()),
+            None => None,
+        }
+    }
+
+    pub fn remove(&mut self, key: String) -> Option<String> {
+        self.store.remove(&key)
+    }
 }
