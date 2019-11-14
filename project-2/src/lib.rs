@@ -1,5 +1,5 @@
-#![deny(missing_docs)]
-//! A simple key/value store.
+#[allow(dead_code)]
+
 
 pub use error::{KvsError, Result};
 pub use kv::KvStore;
