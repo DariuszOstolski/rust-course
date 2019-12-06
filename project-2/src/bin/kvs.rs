@@ -37,11 +37,6 @@ fn main() -> Result<()> {
         ("set", Some(matches)) => {
             let key = matches.value_of("KEY").expect("KEY argument missing");
             let value = matches.value_of("VALUE").expect("VALUE argument missing");
-
-            let mut store = KvStore::open(current_dir()?)?;
-            store.set(key.to_string(), value.to_string())?;
-        }
-        ("get", Some(matches)) => {
             let key = matches.value_of("KEY").expect("KEY argument missing");
 
             let mut store = KvStore::open(current_dir()?)?;
