@@ -3,6 +3,8 @@
 
 pub use error::{KvsError, Result};
 pub use kv::KvStore;
+use command::Command;
 
 mod error;
 mod kv;
+mod command;

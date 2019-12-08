@@ -11,8 +11,13 @@ pub enum KvsError {
     FileNotFound {
         name: String,
     },
+
     #[fail(display = "{}", _0)]
     Io(#[cause] io::Error),
+
+    #[fail(display = "Serialize error{}", _0)]
+    Serialization(#[cause] serde_json::error::Error),
+
     #[fail(display = "Key not found")]
     KeyNotFound,
     /// Unexpected command type error.
@@ -24,6 +29,12 @@ pub enum KvsError {
 impl From<io::Error> for KvsError {
     fn from(err: io::Error) -> KvsError {
         KvsError::Io(err)
+    }
+}
+
+impl From<serde_json::error::Error> for KvsError {
+    fn from(err: serde_json::error::Error) -> KvsError {
+        KvsError::Serialization(err)
     }
 }
 
