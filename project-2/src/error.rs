@@ -1,9 +1,6 @@
 
 extern crate failure;
-
 use std::io;
-use failure::Error;
-
 
 #[derive(Debug, Fail)]
 pub enum KvsError {
